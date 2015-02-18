@@ -4,16 +4,21 @@ import java.sql.Timestamp;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import static idvorskij.labs.journal.staticinfo.StaticInfo.*;
 
 public class Journal {
 
-	public Journal(@Min(0) int id, @NotNull ErrorType type,
-			@NotNull @Size(min = 5, max = 50) String name,
+	public Journal(
+			@Min(JOURNAL_ID_MIN_CONSTRAINT) int id,
+			@NotNull ErrorType type,
+			@NotNull @Size(min = JOURNAL_NAME_MIN_SIZE_CONSTRAINT, max = JOURNAL_NAME_MAX_SIZE_CONSTRAINT) String name,
+			@NotNull @Size(min = JOURNAL_CAUSE_MIN_SIZE_CONSTRAINT, max = JOURNAL_CAUSE_MAX_SIZE_CONSTRAINT) String cause,
 			@NotNull @Size(min = 5, max = 256) String description,
 			@NotNull Timestamp date) {
 		this.id = id;
 		this.type = type;
 		this.name = name;
+		this.cause = cause;
 		this.description = description;
 		this.date = date;
 	}
@@ -22,7 +27,7 @@ public class Journal {
 		return id;
 	}
 
-	public void setId(@Min(0) int id) {
+	public void setId(@Min(JOURNAL_ID_MIN_CONSTRAINT) int id) {
 		this.id = id;
 	}
 
@@ -38,7 +43,10 @@ public class Journal {
 		return name;
 	}
 
-	public void setName(@NotNull @Size(min = 5, max = 50) String name) {
+	public void setName(
+			@NotNull 
+			@Size(min = JOURNAL_NAME_MIN_SIZE_CONSTRAINT, max = JOURNAL_NAME_MAX_SIZE_CONSTRAINT) 
+			String name) {
 		this.name = name;
 	}
 
@@ -55,7 +63,9 @@ public class Journal {
 	}
 
 	public void setDescription(
-			@NotNull @Size(min = 5, max = 256) String description) {
+			@NotNull 
+			@Size(min = JOURNAL_DESCRIPTION_MIN_SIZE_CONSTRAINT, max = JOURNAL_DESCRIPTION_MAX_SIZE_CONSTRAINT)
+			String description) {
 		this.description = description;
 	}
 
@@ -64,19 +74,31 @@ public class Journal {
 		return "Journal [id=" + id + ", type=" + type + ", name=" + name
 				+ ", description=" + description + ", date=" + date + "]";
 	}
-	
-	@Min(0)
+
+	public String getCause() {
+		return cause;
+	}
+
+	public void setCause(String cause) {
+		this.cause = cause;
+	}
+
+	@Min(JOURNAL_ID_MIN_CONSTRAINT)
 	private int id;
 
 	@NotNull
 	private ErrorType type;
 
-	@NotNull(message="Имя должно быть задано")
-	@Size(min = 5, max = 50)
+	@NotNull
+	@Size(min = JOURNAL_NAME_MIN_SIZE_CONSTRAINT, max = JOURNAL_NAME_MAX_SIZE_CONSTRAINT)
 	private String name;
 
 	@NotNull
-	@Size(min = 5, max = 256)
+	@Size(min = JOURNAL_CAUSE_MIN_SIZE_CONSTRAINT, max = JOURNAL_CAUSE_MAX_SIZE_CONSTRAINT)
+	private String cause;
+
+	@NotNull
+	@Size(min = JOURNAL_DESCRIPTION_MIN_SIZE_CONSTRAINT, max = JOURNAL_DESCRIPTION_MAX_SIZE_CONSTRAINT)
 	private String description;
 
 	@NotNull
