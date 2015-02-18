@@ -5,8 +5,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
-
 public class Journal {
 
 	public Journal(@Min(0) int id, @NotNull ErrorType type,
@@ -65,11 +63,6 @@ public class Journal {
 	public String toString() {
 		return "Journal [id=" + id + ", type=" + type + ", name=" + name
 				+ ", description=" + description + ", date=" + date + "]";
-	}
-
-	public static void main(String[] args) {
-		Journal j = new Journal(-9, ErrorType.FATAL_ERROR, null, "Description", new Timestamp(13));
-		System.out.println(j);
 	}
 	
 	@Min(0)
