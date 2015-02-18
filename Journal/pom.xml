@@ -8,7 +8,8 @@
 	<name>Journal Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-	
+		<!-- ORACLE database driver -->
+
 		<!-- Servlet API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

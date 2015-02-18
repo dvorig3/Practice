@@ -1,12 +1,15 @@
 package idvorskij.labs.journal.entities;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import static idvorskij.labs.journal.staticinfo.StaticInfo.*;
 
-public class Journal {
+public class Journal implements Serializable{
 
 	public Journal(
 			@Min(JOURNAL_ID_MIN_CONSTRAINT) int id,
