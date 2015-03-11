@@ -11,16 +11,18 @@ public class RandomGenerator {
 	private static int startLow  = (int) 'a';
 	private static int finishLow = (int) 'z';
 	
-	public String getRandomString(int size){
+	public static String getRandomString(int size){
 		return null;
 	}
 	
-	public Date  getRandomDate(){
+	public static Date  getRandomDate(){
 		return null;
 	}
 	
-	public char getRandomChar(){
-		random.nextInt(1);
+	public static char getRandomChar(){
+		// choice if upper 0 or lower case 1
+		int choice = random.nextInt(2);
+		
 		return 0;
 	}
 
