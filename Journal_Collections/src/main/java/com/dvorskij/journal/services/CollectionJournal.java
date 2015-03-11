@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
 import com.dvorskij.journal.pojo.Record;
 
 public class CollectionJournal implements Journal {
@@ -36,7 +35,7 @@ public class CollectionJournal implements Journal {
 		return subJ;
 	}
 
-	public Journal filter(String s) throws ParseException, NullPointerException  {
+	public Journal filter(String s) throws ParseException, NullPointerException {
 		if (s == null)
 			throw new NullPointerException();
 		Record record = new Record(s);
@@ -68,9 +67,12 @@ public class CollectionJournal implements Journal {
 	}
 
 	public void printRecords() {
-		for (int i = 0; i < size(); ++i) {
-			System.out.println(get(i).toString());
-		}
+		if (size() == 0)
+			System.out.println("There is no records in journal");
+		else
+			for (int i = 0; i < size(); ++i) {
+				System.out.println(get(i).toString());
+			}
 	}
 
 	public void remove(int index) throws IndexOutOfBoundsException {
