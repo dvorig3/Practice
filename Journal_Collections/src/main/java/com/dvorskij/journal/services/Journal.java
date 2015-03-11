@@ -1,8 +1,10 @@
 package com.dvorskij.journal.services;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import com.dvorskij.journal.jb.Record;
+
+import com.dvorskij.journal.pojo.Record;
 
 public interface Journal {
 	/**
@@ -41,7 +43,7 @@ public interface Journal {
 	 * @param s
 	 * @return filtered journal
 	 */
-	Journal filter(String s) throws NullPointerException;
+	Journal filter(String s) throws NullPointerException, ParseException;
 
 	/**
 	 * this method returns the record by index

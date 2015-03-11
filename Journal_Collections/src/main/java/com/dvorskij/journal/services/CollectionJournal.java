@@ -1,12 +1,13 @@
 package com.dvorskij.journal.services;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import com.dvorskij.journal.jb.Record;
+import com.dvorskij.journal.pojo.Record;
 
 public class CollectionJournal implements Journal {
 
@@ -27,15 +28,24 @@ public class CollectionJournal implements Journal {
 		if (fromDate == null || toDate == null)
 			throw new NullPointerException();
 		Journal subJ = new CollectionJournal();
-		for(Record record: journal){
-			if(record.getDate().after(fromDate) && record.getDate().before(toDate))
+		for (Record record : journal) {
+			if (record.getDate().after(fromDate)
+					&& record.getDate().before(toDate))
 				subJ.add(record);
 		}
 		return subJ;
 	}
 
-	public Journal filter(String s) throws NullPointerException {
-		return null;
+	public Journal filter(String s) throws ParseException, NullPointerException  {
+		if (s == null)
+			throw new NullPointerException();
+		Record record = new Record(s);
+		Journal subJ = new CollectionJournal();
+		for (Record r : journal) {
+			if (record.equals(r))
+				subJ.add(r);
+		}
+		return subJ;
 	}
 
 	public Record get(int index) throws IndexOutOfBoundsException {
@@ -139,11 +149,11 @@ public class CollectionJournal implements Journal {
 
 		public int compare(Record o1, Record o2) {
 
-			return o1.getImportance().getImportance() < o2.getImportance()
-					.getImportance() ? -1
-					: o1.getImportance().getImportance() > o2.getImportance()
-							.getImportance() ? 1 : compareDates(o1.getDate(),
-							o2.getDate());
+			return o1.getImportance().getImportanceNumber() < o2
+					.getImportance().getImportanceNumber() ? -1 : o1
+					.getImportance().getImportanceNumber() > o2.getImportance()
+					.getImportanceNumber() ? 1 : compareDates(o1.getDate(),
+					o2.getDate());
 		}
 
 	}
@@ -154,12 +164,11 @@ public class CollectionJournal implements Journal {
 
 		public int compare(Record o1, Record o2) {
 
-			return o1.getImportance().getImportance() < o2.getImportance()
-					.getImportance() ? -1
-					: o1.getImportance().getImportance() > o2.getImportance()
-							.getImportance() ? 1 : compareStringDates(
-							o1.getSource(), o2.getSource(), o1.getDate(),
-							o2.getDate());
+			return o1.getImportance().getImportanceNumber() < o2
+					.getImportance().getImportanceNumber() ? -1 : o1
+					.getImportance().getImportanceNumber() > o2.getImportance()
+					.getImportanceNumber() ? 1 : compareStringDates(
+					o1.getSource(), o2.getSource(), o1.getDate(), o2.getDate());
 		}
 
 	}
