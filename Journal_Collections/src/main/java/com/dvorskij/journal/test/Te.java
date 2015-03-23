@@ -1,6 +1,7 @@
 package com.dvorskij.journal.test;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.Random;
 
 import com.dvorskij.journal.pojo.Record;
@@ -20,9 +21,18 @@ public class Te {
 		// }catch (NullPointerException e){
 		// e.printStackTrace();
 		// }
-		for (int i = 0; i < 10; i++)
-			System.out.println((new Random()).nextInt(2));
-		System.out.println("FINISH");
+//		for (int i = 0; i < 10; i++)
+//			System.out.println((new Random()).nextInt(2));
+//		System.out.println("FINISH");
+		
+//		Date d = new Date();
+//		
+//		java.sql.Date f =  new java.sql.Date(d.getTime());
+//		System.out.println(f.getSeconds());
+		
+		String patternPageN = "[0123456789]*";
+		System.out.println("97778979966868".matches(patternPageN));
+		
 
 	}
 

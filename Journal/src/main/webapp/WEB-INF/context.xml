@@ -1,8 +1,0 @@
-
-<resource auth="Container" 
-	factory="oracle.jdbc.pool.OracleDataSourceFactory" 
-	type="oracle.jdbc.pool.OracleDataSource"  
-	name="jdbc/db" 
-	user="Journal" 
-	password="111111" connectionCachingEnabled="true" 
-	url="jdbc:oracle:thin:@localhost:1521:XE"></resource> 

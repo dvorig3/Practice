@@ -1,4 +1,4 @@
-package com.dvorskij.journal.test;
+package idvorskij.labs.journal.controllers;
 
 import java.util.Date;
 import java.util.Random;
@@ -14,9 +14,6 @@ public class RandomGenerator {
 
 	// for date generator
 
-	public static int getRandomInt(int to) {
-		return random.nextInt(to);
-	}
 	public static String getRandomString(int size) {
 		if (size == 0)
 			return "";

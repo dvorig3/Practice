@@ -10,8 +10,38 @@
   	<description></description>
   	<servlet-class>idvorskij.labs.journal.controllers.MyServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Paginator</servlet-name>
+  	<display-name>Paginator</display-name>
+  	<description></description>
+  	<servlet-class>idvorskij.labs.journal.controllers.Paginator</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SortRegistrator</servlet-name>
+  	<display-name>SortRegistrator</display-name>
+  	<description></description>
+  	<servlet-class>idvorskij.labs.journal.controllers.SortRegistrator</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Updator</servlet-name>
+  	<display-name>Updator</display-name>
+  	<description></description>
+  	<servlet-class>idvorskij.labs.journal.controllers.Updator</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>MyServlet</servlet-name>
   	<url-pattern>/MyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Paginator</servlet-name>
+  	<url-pattern>/Paginator</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SortRegistrator</servlet-name>
+  	<url-pattern>/SortRegistrator</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Updator</servlet-name>
+  	<url-pattern>/Updator</url-pattern>
   </servlet-mapping>
 </web-app>
