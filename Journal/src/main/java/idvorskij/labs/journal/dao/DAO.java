@@ -163,21 +163,54 @@ public enum DAO {
 		return intL;
 	}
 
+	public Record getRecordById(int id) throws ServletException, SQLException {
+		Connection con = getConnection();
+		Record record = null;
+		PreparedStatement statement = con
+				.prepareStatement("SELECT * FROM RECORDS WHERE ID = ?");
+		statement.setInt(1, id);
+		ResultSet rs = statement.executeQuery();
+		if (rs.next())
+			record = new Record(rs.getInt("ID"), new Date(rs.getTimestamp(
+					"DATE_E").getTime()),
+					Importance.getImportanceByImportanceNumber(rs
+							.getInt("IMPORTANCE")), rs.getString("SOURCE"),
+					rs.getString("MESSAGE"));
+
+		releaseConnection(con);
+		return record;
+	}
+
 	public void updateRecord(Record record) throws ServletException,
 			SQLException {
+		if (record == null)
+			return;
+		// Record oldRecord = getRecordById(record.getId());
+		// if (oldRecord == null)
+		// return;
+
 		Connection con = getConnection();
-		PreparedStatement statement = con
-				.prepareStatement("UPDATE RECORDS "
-						+ " SET DATE_E = ?,"
-						+ " SET IMPORTANCE = ?,"
-						+ " SET SOURCE = ?,"
-						+ " SET MESSAGE = ? "
-						+ " WHERE ID = ?");
-		statement.setTimestamp(1, new Timestamp(record.getDate().getTime()));
-		statement.setInt(2, record.getImportance().getImportanceNumber());
-		statement.setString(3,record.getSource());
-		statement.setString(4,record.getMessage());
-		statement.setInt(4, record.getId());
+		java.util.Date date = record.getDate();
+		// if (date == null)
+		// date = oldRecord.getDate();
+		Importance imp = record.getImportance();
+		// if (imp == null)
+		// imp = oldRecord.getImportance();
+		String source = record.getSource();
+		// if (source == null)
+		// source = oldRecord.getSource();
+		String message = record.getMessage();
+		// if (message == null)
+		// message = oldRecord.getMessage();
+
+		PreparedStatement statement = con.prepareStatement("UPDATE RECORDS "
+				+ " SET DATE_E = ? , " + " IMPORTANCE = ? , "
+				+ " SOURCE = ? , " + " MESSAGE = ? " + " WHERE ID = ? ");
+		statement.setTimestamp(1, new Timestamp(date.getTime()));
+		statement.setInt(2, imp.getImportanceNumber());
+		statement.setString(3, source);
+		statement.setString(4, message);
+		statement.setInt(5, record.getId());
 		statement.execute();
 		con.commit();
 		releaseConnection(con);

@@ -71,25 +71,22 @@ public class Paginator extends HttpServlet {
 		// pageCurrentInString
 		String pageCurrentInString = request.getParameter("pageN");
 
-		System.out.println(pageCurrentInString);
 		// -------------------------------------------------------------------------------------------------------
 		// pattern to validate pageCurrentInString (pageN parameter) (is a
 		// number?)
-		String patternPageN = "[0123456789]{9}";
+		String patternPageN = "[0123456789]*";
 
 		// -------------------------------------------------------------------------------------------------------
 		// validation pageCurrentInString if null or does not matches pattern
 		// set 1
 		// getting current page to show integer
-		
-		/**!!! PROBLEM !!!*/
 
+		//                      !!! instance of integer !!!!
 		int pageCurrent = pageCurrentInString == null ? 1
-				: pageCurrentInString.matches(patternPageN) ? 1 : Integer
+				: !pageCurrentInString.matches(patternPageN) ? 1 : Integer
 						.parseInt(pageCurrentInString) > pageAmount ? 1
 						: Integer.parseInt(pageCurrentInString);
 
-		System.out.println(pageCurrent);
 		// -------------------------------------------------------------------------------------------------------
 		// define start and finish record in current page
 		int start = (pageCurrent - 1) * pageCapacity;

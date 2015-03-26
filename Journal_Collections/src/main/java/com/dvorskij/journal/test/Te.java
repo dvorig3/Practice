@@ -30,8 +30,10 @@ public class Te {
 //		java.sql.Date f =  new java.sql.Date(d.getTime());
 //		System.out.println(f.getSeconds());
 		
-		String patternPageN = "[0123456789]*";
-		System.out.println("97778979966868".matches(patternPageN));
+//		String patternPageN = "[0123456789]*";
+//		System.out.println("97778979966868".matches(patternPageN));
+		Object ob = "dff";
+		System.out.println(ob instanceof String);
 		
 
 	}

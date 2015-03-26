@@ -7,6 +7,7 @@ import idvorskij.labs.journal.entities.Record;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -34,8 +35,6 @@ public class MyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-
 		response.setContentType("text/html; charset=ISO-8859-1");
 		DAO dao = DAO.INSTANCE;
 		// response.getWriter().print(dao.getT());
@@ -49,20 +48,20 @@ public class MyServlet extends HttpServlet {
 		// response.getWriter().print("Error");
 		// }
 
-//		for (int i = 0; i < 100; ++i)
-//			try {
-//				dao.addRecord(new Record(RandomGenerator.getRandomDate(),
-//						Importance.getImportanceBySigning(RandomGenerator
-//								.getRandomImportanceSigningGenerator()),
-//						RandomGenerator.getRandomString(5), RandomGenerator
-//								.getRandomString(10)));
-//			} catch (NullPointerException e) {
-//				response.getWriter().print("Error1");
-//			} catch (IllegalArgumentException e) {
-//				response.getWriter().print("Error2");
-//			} catch (SQLException e) {
-//				response.getWriter().print("Error3");
-//			}
+		// for (int i = 0; i < 100; ++i)
+		// try {
+		// dao.addRecord(new Record(RandomGenerator.getRandomDate(),
+		// Importance.getImportanceBySigning(RandomGenerator
+		// .getRandomImportanceSigningGenerator()),
+		// RandomGenerator.getRandomString(5), RandomGenerator
+		// .getRandomString(10)));
+		// } catch (NullPointerException e) {
+		// response.getWriter().print("Error1");
+		// } catch (IllegalArgumentException e) {
+		// response.getWriter().print("Error2");
+		// } catch (SQLException e) {
+		// response.getWriter().print("Error3");
+		// }
 
 		// try {
 		// printList(response.getWriter(), dao.getRecordsSortedByDate());
@@ -75,15 +74,43 @@ public class MyServlet extends HttpServlet {
 		// } catch (SQLException e) {
 		// response.getWriter().print("Erro4r3");
 		// }
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// try {
+		// DAO.INSTANCE.updateRecord(new Record(1, new Date(),
+		// Importance.RECOVERY, "source", "message"));
+		// } catch (NullPointerException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// } catch (IllegalArgumentException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// } catch (SQLException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// try {
+		// response.getWriter().print(DAO.INSTANCE.getRecordById(1));
+		// } catch (SQLException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// try {
+		// response.getWriter().print(DAO.INSTANCE.getRecordById(-1));
+		// } catch (SQLException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// try {
+		// response.getWriter().print(DAO.INSTANCE.getRecordById(976867));
+		// } catch (SQLException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// try {
+		// response.getWriter().print(DAO.INSTANCE.getRecordById(5));
+		// } catch (SQLException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 	}
 
 	public <T> void printList(PrintWriter out, List<T> list) {
