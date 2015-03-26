@@ -22,6 +22,18 @@
   	<description></description>
   	<servlet-class>com.idvorskij.forum.controlers.Login</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>Adder</servlet-name>
+  	<display-name>Adder</display-name>
+  	<description></description>
+  	<servlet-class>com.idvorskij.forum.controlers.Adder</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Question</servlet-name>
+  	<display-name>Question</display-name>
+  	<description></description>
+  	<servlet-class>com.idvorskij.forum.controlers.Question</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Home</servlet-name>
   	<url-pattern>/Home</url-pattern>
@@ -33,5 +45,13 @@
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Adder</servlet-name>
+  	<url-pattern>/Adder</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Question</servlet-name>
+  	<url-pattern>/Question</url-pattern>
   </servlet-mapping>
 </web-app>

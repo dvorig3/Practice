@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<link rel="shortcut icon" type="image/jpg" href="resources/images/favicon.jpg"/>
+<link rel="shortcut icon" type="image/jpg"
+	href="resources/images/favicon.jpg" />
 <style>
 body {
 	font-family: helvetica;
@@ -86,8 +87,14 @@ body {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<div id="bg">
-		<div class="module">
-			<form action ="Login" method="POST" class="form">
+		<center>
+			<h2>
+				<font color="red">${error}</font>
+			</h2>
+		</center>
+		<!-- <div class="module">
+			
+			 <form action ="Login" method="POST" class="form">
 				<center>
 					<h2 class="fs-title">Sign in</h2>
 					<h3 class="fs-title">Input your data</h3>
@@ -104,8 +111,8 @@ body {
 					</h2>
 				</center>
 			</form>
-
-		</div>
+			-->
+	</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>

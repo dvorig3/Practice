@@ -104,7 +104,7 @@ body {
 		<li><a href="registr.jsp">Registration</a></li>
 		<li><a href="Login">Log out</a></li>
 		<div align="right">
-			<a href="#">${user}</a>
+			<a href="#">${userdata}</a>
 		</div>
 	</ul>
 	</nav>

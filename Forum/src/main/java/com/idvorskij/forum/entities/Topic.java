@@ -102,4 +102,18 @@ public class Topic implements Serializable {
 	private String content;
 	private int id;
 	private int questionsAmount;
+
+	/**
+	 * @return the questionsAmount
+	 */
+	public int getQuestionsAmount() {
+		return questionsAmount;
+	}
+
+	/**
+	 * @param questionsAmount the questionsAmount to set
+	 */
+	public void setQuestionsAmount(int questionsAmount) {
+		this.questionsAmount = questionsAmount;
+	}
 }

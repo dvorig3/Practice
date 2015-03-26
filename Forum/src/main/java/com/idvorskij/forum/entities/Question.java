@@ -1,6 +1,7 @@
 package com.idvorskij.forum.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Question implements Serializable {
@@ -84,6 +85,10 @@ public class Question implements Serializable {
 	 */
 	public Date getDate() {
 		return date;
+	}
+
+	public String getStringDate() {
+		return DATE_FORMAT.format(date);
 	}
 
 	/**
@@ -191,5 +196,10 @@ public class Question implements Serializable {
 	private int id;
 	private int topicId;
 	private User user;
+	
+	private static final String DATE_PATTERN = "yyyy-MM-dd";
+
+	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(
+			DATE_PATTERN);
 
 }

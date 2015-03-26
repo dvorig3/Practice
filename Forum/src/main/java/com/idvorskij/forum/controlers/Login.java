@@ -28,6 +28,64 @@ public class Login extends HttpServlet {
 
 	private static final String USER_ATTRIBUT_NAME = "user";
 
+	private static final String ERROR_ATTRIBUT_NAME = "user";
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession(true);
+		logout(session);
+		response.sendRedirect("Home");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
+
+		// !isLogged
+		if (isLoggedAnyone(session)) { // do smth
+			request.setAttribute(ERROR_ATTRIBUT_NAME, "You need to log out!!!");
+			request.getRequestDispatcher("login.jsp")
+					.forward(request, response);
+			return;
+		}
+		User user = null;
+		try {
+			user = getUserDataFromLoginFormAndReturnUser(request);
+		} catch (SQLException e) {
+			request.setAttribute(ERROR_ATTRIBUT_NAME,
+					"Some problem occurred!!! Try again");
+			request.getRequestDispatcher("login.jsp")
+					.forward(request, response);
+			return;
+		}
+		if (user == null) {// do smth
+			request.setAttribute(ERROR_ATTRIBUT_NAME,
+					"You input incorrect data!!!");
+			request.getRequestDispatcher("login.jsp")
+					.forward(request, response);
+			return;
+		}
+
+		if (!login(session, user)) {
+			request.setAttribute(ERROR_ATTRIBUT_NAME,
+					"Some problem occurred!!! Try again");
+			request.getRequestDispatcher("login.jsp")
+					.forward(request, response);
+			return;
+		} else
+			response.sendRedirect("Home");
+
+	}
+
 	/**
 	 * check if any user is logged in
 	 * 
@@ -69,56 +127,22 @@ public class Login extends HttpServlet {
 			session.invalidate();
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	public User getUserFromSession(HttpSession session) {
+		if (session == null)
+			return null;
+		Object userObj = session.getAttribute(USER_ATTRIBUT_NAME);
+		if (userObj == null)
+			return null;
+		if (!(userObj instanceof User))
+			return null;
 
-		HttpSession session = request.getSession(true);
-		logout(session);
-		response.sendRedirect("Home");
+		return (User) userObj;
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
-
-		// !isLogged
-		if (isLoggedAnyone(session)) { // do smth
-			request.setAttribute("error", "You need to log out!!!");
-			request.getRequestDispatcher("login.jsp")
-					.forward(request, response);
-			return;
-		}
-		User user = null;
-		try {
-			user = getUserDataFromLoginFormAndReturnUser(request);
-		} catch (SQLException e) {
-			request.setAttribute("error", "Some problem occurred!!! Try again");
-			request.getRequestDispatcher("login.jsp")
-					.forward(request, response);
-			return;
-		}
-		if (user == null) {// do smth
-			request.setAttribute("error", "You input incorrect data!!!");
-			request.getRequestDispatcher("login.jsp")
-					.forward(request, response);
-			return;
-		}
-
-		if (!login(session, user)) {
-			request.setAttribute("error", "Some problem occurred!!! Try again");
-			request.getRequestDispatcher("login.jsp")
-					.forward(request, response);
-			return;
-		} else
-			response.sendRedirect("Home");
+	public boolean isUserAdmin(User user) throws ServletException, SQLException {
+		if (user == null)
+			return false;
+		return DAO.INSTANCE.isAdmin(user.getId());
 
 	}
 

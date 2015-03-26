@@ -99,7 +99,6 @@ body {
 					type="text" placeholder="Confirm password" class="textbox" /> <input
 					type="button" value="Sign up" class="button" />
 			</form>
-
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>

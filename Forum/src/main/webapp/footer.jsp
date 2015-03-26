@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"
+	isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,18 +62,20 @@ body {
 <body>
 	<nav id="navigation" class="clearfix">
 	<ul>
-		<li><a href="#">Home</a></li>
-		<li><a href="#">About</a></li>
-		<li><a href="#">Registration</a></li>
-		<li><a href="#">Log in</a></li>
-		<li><a href="#">Log out</a></li>
+		<li><a href="Home">Home</a></li>
+		<li><a href="registr.jsp">Registration</a></li>
+		<li><a href="Login">Log out</a></li>
+		<div align="right">
+			<a href="#">${userdata}</a>
+		</div>
 	</ul>
 	</nav>
 	<p>
 	<p>
 	<center>
 		<img alt="forum.ua" src="resources/images/footerforum.jpg" />
-		<p><p>&copy; 2015, Forum.ua
+		<p>
+		<p>&copy; 2015, Forum.ua
 	</center>
 </body>
 </html>
