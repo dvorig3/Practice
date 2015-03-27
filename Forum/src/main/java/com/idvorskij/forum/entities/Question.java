@@ -87,6 +87,10 @@ public class Question implements Serializable {
 		return date;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getStringDate() {
 		return DATE_FORMAT.format(date);
 	}
@@ -196,7 +200,7 @@ public class Question implements Serializable {
 	private int id;
 	private int topicId;
 	private User user;
-	
+
 	private static final String DATE_PATTERN = "yyyy-MM-dd";
 
 	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(

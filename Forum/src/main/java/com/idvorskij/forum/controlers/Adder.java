@@ -54,7 +54,7 @@ public class Adder extends HttpServlet {
 		
 		
 //		try {
-//			DAO.INSTANCE.addQuestion(new Question(0, new User(2, "oleg"), 24, new Date(), "NullPointerException occured!!!", 0));
+//			DAO.INSTANCE.addQuestion(new QuestionPage(0, new User(2, "oleg"), 24, new Date(), "NullPointerException occured!!!", 0));
 //		} catch (SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();

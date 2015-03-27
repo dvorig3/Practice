@@ -1,4 +1,3 @@
-<%@page import="com.idvorskij.forum.entities.User"%>
 <%@page import="com.idvorskij.forum.controlers.Login"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
@@ -86,6 +85,21 @@ tr:hover a {
 	background: #666;
 	color: #FFF;
 } /* Hover cell effect! */
+.fs-topic {
+	font-family: serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #2E9AFE;
+}
+
+.publ_user {
+	font-family: serif;
+	font-weight: bold;
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2E9AFE;
+	font-size: 15px;
+}
 
 /* ----------------------------------- */
 .form_add_quest {
@@ -161,16 +175,26 @@ tr:hover a {
 	<jsp:include page="header.jsp"></jsp:include>
 	<p>
 	<p>
-	<table align="center">
+	<center>
+		<h1>
+			Answers to question <span class="fs-title_add_quest">
+				${question.content} </span>
+		</h1>
+	</center>
+	<table align="center" width="80%">
 		<tr>
-
-			<th width="70%">Topic</th>
-			<th>Questions</th>
+			<th width="15%">#</th>
+			<th>Answer</th>
 		</tr>
-		<c:forEach var="topic" items="${topics}">
+		<c:forEach var="answ" items="${answers}">
 			<tr>
-				<td><a href="Question?topic=${topic.id}">${topic.content}</a></td>
-				<td>${topic.questionsAmount}</td>
+				<td><span class="publ_user"> ${answ.user.nickname}</span>
+					<div>${answ.stringDate}</div></td>
+				<td>${answ.content}</td>
+
+			</tr>
+			<tr>
+
 			</tr>
 		</c:forEach>
 
@@ -179,20 +203,20 @@ tr:hover a {
 	<p>
 		<%
 			session = request.getSession();
-
-			if (Login.isLoggedAdmin(session)) {
+			if (Login.isLoggedAnyone(session)) {
 		%>
 	
 	<div id="bg_add_quest">
 		<div class="module_add_quest">
-			<form action="Home" method="POST" class="form_add_quest">
+			<form action="Answer" method="POST" class="form_add_quest">
 
 				<h4>
-					<span class="fs-title">Dear ADMIN, publish new topic</span>
+					<span class="fs-title">Publish your answer to question</span>
 				</h4>
-				<textarea name="topic" class="textbox_add_quest"></textarea>
+				<input type="hidden" name="question" value="${question.id}" />
+				<textarea name="answer" class="textbox_add_quest"></textarea>
 				<input type="submit" class="button_add_quest"
-					value="Publish">
+					value="Publicate">
 			</form>
 		</div>
 	</div>
@@ -201,7 +225,6 @@ tr:hover a {
 	%>
 	<p>
 	<p>
-
 		<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

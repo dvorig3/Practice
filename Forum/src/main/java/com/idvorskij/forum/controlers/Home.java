@@ -26,11 +26,15 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
-		User user = (User) session.getAttribute("user");
-		if(user != null)
-		request.setAttribute("userdata", "You are logged in as <span class = \"user-title\">"+user.getNickname()+"</span>");
-		else request.setAttribute("user", "You need to log in. ");
+		HttpSession session = request.getSession();
+		User user = Login.getUserFromSession(session);
+		if (user != null)
+			request.setAttribute(
+					"userdata",
+					"You are logged in as <span class = \"user-title\">"
+							+ user.getNickname() + "</span>");
+		else
+			request.setAttribute("user", "You need to log in. ");
 		List<Topic> topics = null;
 		try {
 			topics = DAO.INSTANCE.getTopics();
@@ -40,8 +44,7 @@ public class Home extends HttpServlet {
 		}
 		request.setAttribute("topics", topics);
 		request.getRequestDispatcher("home.jsp").forward(request, response);
-		
-		
+
 	}
 
 	/**
@@ -50,9 +53,23 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-	
 
+		String topic = request.getParameter("topic");
+		if (topic == null) {
+			response.sendRedirect("Home");
+			return;
+		}
+		if (topic.equals("")) {
+			response.sendRedirect("Home");
+			return;
+		}
+		try {
+			DAO.INSTANCE.addTopic(new Topic(0, topic, 0));
+		} catch (SQLException e) {
+			response.sendRedirect("Home");
+			return;
+		}
+		response.sendRedirect("Home");
+	}
 
 }

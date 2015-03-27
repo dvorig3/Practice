@@ -178,7 +178,7 @@ tr:hover a {
 	<center>
 		<h1>
 			Questions to topic <span class="fs-title_add_quest">
-				${topicdata} </span>
+				${topicdata.content} </span>
 		</h1>
 	</center>
 	<table align="center" width="80%">
@@ -201,7 +201,7 @@ tr:hover a {
 	<p>
 	<p>
 		<%
-		session = request.getSession();
+			session = request.getSession();
 			if (Login.isLoggedAnyone(session)) {
 		%>
 	
@@ -211,15 +211,15 @@ tr:hover a {
 
 				<h4>
 					<span class="fs-title">Publish your question to topic</span><span
-						class="fs-title_add_quest"> ${topicdata} </span>
+						class="fs-title_add_quest"> ${topicdata.content} </span>
 				</h4>
-
+				<input type="hidden" name="topic" value="${topicdata.id}" />
 				<textarea name="question" class="textbox_add_quest"></textarea>
 				<input type="submit" name="question" class="button_add_quest"
 					value="Publicate">
 			</form>
 		</div>
-	</div> 
+	</div>
 	<%
 		}
 	%>

@@ -122,12 +122,12 @@ public class Login extends HttpServlet {
 		return true;
 	}
 
-	public void logout(HttpSession session) {
+	public static void logout(HttpSession session) {
 		if (session != null)
 			session.invalidate();
 	}
 
-	public User getUserFromSession(HttpSession session) {
+	public static User getUserFromSession(HttpSession session) {
 		if (session == null)
 			return null;
 		Object userObj = session.getAttribute(USER_ATTRIBUT_NAME);
@@ -139,7 +139,26 @@ public class Login extends HttpServlet {
 		return (User) userObj;
 	}
 
-	public boolean isUserAdmin(User user) throws ServletException, SQLException {
+	public static boolean isLoggedAdmin(HttpSession session) {
+		if (isLoggedAnyone(session)) {
+			User user = Login.getUserFromSession(session);
+			if (user == null)
+				return false;
+			else {
+				try {
+					return isUserAdmin(user);
+				} catch (ServletException e) {
+					return false;
+				} catch (SQLException e) {
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+
+	public static boolean isUserAdmin(User user) throws ServletException,
+			SQLException {
 		if (user == null)
 			return false;
 		return DAO.INSTANCE.isAdmin(user.getId());

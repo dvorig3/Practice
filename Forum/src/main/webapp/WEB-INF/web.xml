@@ -32,7 +32,13 @@
   	<servlet-name>Question</servlet-name>
   	<display-name>Question</display-name>
   	<description></description>
-  	<servlet-class>com.idvorskij.forum.controlers.Question</servlet-class>
+  	<servlet-class>com.idvorskij.forum.controlers.QuestionPage</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>Answer</servlet-name>
+  	<display-name>Answer</display-name>
+  	<description></description>
+  	<servlet-class>com.idvorskij.forum.controlers.AnswerPage</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Home</servlet-name>
@@ -53,5 +59,9 @@
   <servlet-mapping>
   	<servlet-name>Question</servlet-name>
   	<url-pattern>/Question</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Answer</servlet-name>
+  	<url-pattern>/Answer</url-pattern>
   </servlet-mapping>
 </web-app>
